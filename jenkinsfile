@@ -18,7 +18,7 @@ pipeline {
         }
          stage(" Aws Terraform implementation"){
             steps{
-                sh "cd tf && terraform init && terraform appply --auto-approve && terrafrom destroy --auto=approve"
+                sh "cd tf && terraform init && terraform apply --auto-approve && terrafrom destroy --auto=approve"
             }
         }
     }
