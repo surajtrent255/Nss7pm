@@ -8,7 +8,13 @@ pipeline {
                sh "ls -ltr"
                sh "pwd"  
                sh "cd docker02/mysql && docker build -t mysql01 ."
+               sh "docker image tag mysql01 idealsuraj/mysql01:v1"
             }    
+        }
+        stage(" push docker image to docker hub "){
+            steps{
+                sh "docker login -u=idealsuraj -p=Docker1*# && docker push idealsuraj/mysql01:v1"
+            }
         }
     }
 }
