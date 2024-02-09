@@ -16,5 +16,10 @@ pipeline {
                 sh "docker login -u=idealsuraj -p=Docker1*# && docker push idealsuraj/mysql01:v1"
             }
         }
+         stage(" Aws Terraform implementation"){
+            steps{
+                sh "cd tf && terraform init && terraform appply --auto-approve && terrafrom destroy --auto=approve"
+            }
+        }
     }
 }
