@@ -21,5 +21,12 @@ pipeline {
                 sh "cd tf && terraform init && terraform apply --auto-approve && terraform destroy --auto-approve"
             }
         }
+        stage(" Kubernates Implementation"){
+            steps{
+                sh "chmod 600 jmksrv01.pem"
+                sh "scp -i jmtksrv01.pem -o StrickHostKeyChecking=no rep01.yml ec2-user@103.2333.58.121:/home/ec2-user"
+                sh 'ssh -i jmtsrv01.pem -o StrickHostKeyChecking=no ec2-user@103.233.58.121 "kubectl create -f rep01.yaml"'
+            }
+        }
     }     
 }
